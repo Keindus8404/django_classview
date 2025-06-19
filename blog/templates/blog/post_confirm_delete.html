@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ post.title }}</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
-    <p>Published on: {{ post.created_at }}</p>
-    <a href="{% url 'post_update' post.pk %}">Edit</a>
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete "{{ post.title }}"?</p>
     <form action="{% url 'post_delete' post.pk %}" method="post">
         {% csrf_token %}
-        <button type="submit">Delete</button>
+        <button type="submit">Confirm</button>
     </form>
+    <a href="{% url 'post_detail' post.pk %}">Cancel</a>
 </body>
 </html>
