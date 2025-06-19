@@ -14,15 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.urls import path
 from . import views
-
-
 urlpatterns = [
-    path("", views.PostListView.as_view(), name="post_list"), # 장고에서 클래스 뷰를 사용할때 쓰는 문법
-    path('<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),  # 예시로 추가한 상세 페이지 URL
-    path('create/', views.PostCreateView.as_view(), name='post_create'),  # 예시로 추가한 생성 페이지 URL
-    path('<int:pk>/update/', views.PostUpdateView.as_view(), name='post_update'),  # 예시로 추가한 업데이트 페이지 URL
-    path('<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'),  # 예시로 추가한 삭제 페이지 URL
+    # Include the URLs from the blog app
+    # 반복되는 패턴을 재사용
+    # 코드 재사용  CreateView, ListView, DetailView, UpdateView, DeleteView 기능 내장
+    path('', views.PostListView.as_view(), name='post_list'),
+    path('<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
+    path('create/', views.PostCreateView.as_view(), name='post_create'),
+    path('<int:pk>/update/', views.PostUpdateView.as_view(), name='post_update'),
+    path('<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'),
 ]
